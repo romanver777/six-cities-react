@@ -1,6 +1,7 @@
 {
   "files": {
-    "main.css": "/six-cities-react/static/css/main.10e7b50a.chunk.css",
+    "main.css": "/six-cities-react/css/main.css",
+    "main1.css": "/six-cities-react/static/css/main.10e7b50a.chunk.css",
     "main.js": "/six-cities-react/static/js/main.c5368e34.chunk.js",
     "main.js.map": "/six-cities-react/static/js/main.c5368e34.chunk.js.map",
     "runtime-main.js": "/six-cities-react/static/js/runtime-main.1c9777ef.js",
