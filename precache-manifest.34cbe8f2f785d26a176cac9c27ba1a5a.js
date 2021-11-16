@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d0162e5832b462dfa38ff85a26ef7769",
+    "revision": "146687fb81b13c0e9d6c97a34759095a",
     "url": "/six-cities-react/index.html"
   },
   {
-    "revision": "cafe82683bd81650ea58",
+    "revision": "d9ebd70190f7957ba943",
     "url": "/six-cities-react/static/css/main.10e7b50a.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/six-cities-react/static/js/2.852dccf3.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "cafe82683bd81650ea58",
-    "url": "/six-cities-react/static/js/main.ca1157b0.chunk.js"
+    "revision": "d9ebd70190f7957ba943",
+    "url": "/six-cities-react/static/js/main.e65a3f73.chunk.js"
   },
   {
     "revision": "647db3b1dc382d3283da",
