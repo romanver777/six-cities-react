@@ -4,7 +4,6 @@ import {Link} from 'react-router-dom';
 
 import BookmarkButton from '../bookmark-button/bookmark-button';
 import Mark from '../mark/mark';
-import {BASE_URL} from '../../const';
 import Rating from '../rating/rating';
 import Price from '../price/price';
 
@@ -12,16 +11,16 @@ const Card = (props) => {
 
   const {item, isFavorite} = props;
 
-	const handleClick = (e) => props.onClick(e);
-	const handleMouseOver = (e) => props.onMouseOver(e);
-	const handleMouseLeave = () => props.onMouseLeave();
-	const handleBookmarkClick = (offer, small) => props.onBookmarkClick(offer, small);
+  const handleClick = (e) => props.onClick(e);
+  const handleMouseOver = (e) => props.onMouseOver(e);
+  const handleMouseLeave = () => props.onMouseLeave();
+  const handleBookmarkClick = (offer, small) => props.onBookmarkClick(offer, small);
 
   return (
     <article className="cities__place-card place-card"
-             id={item.id}
-             onMouseOver={() => handleMouseOver(item)}
-             onMouseLeave={handleMouseLeave}
+      id={item.id}
+      onMouseOver={() => handleMouseOver(item)}
+      onMouseLeave={handleMouseLeave}
     >
 
       <Mark
@@ -30,9 +29,9 @@ const Card = (props) => {
       />
 
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <Link to={BASE_URL + `/offer/` + item.hotelId}
-              className="buttonLink"
-              onClick={() => handleClick(item)}
+        <Link to={`/offer/` + item.hotelId}
+          className="buttonLink"
+          onClick={() => handleClick(item)}
         >
           <img className="place-card__image" src={item.preview_image} width="260" height="200" alt="Place"/>
         </Link>
@@ -59,9 +58,9 @@ const Card = (props) => {
         />
 
         <h2 className="place-card__name">
-          <Link to={BASE_URL + `/offer/${item.hotelId}`}
-                className="card__title buttonLink"
-                onClick={() => handleClick(item)}
+          <Link to={`/offer/${item.hotelId}`}
+            className="card__title buttonLink"
+            onClick={() => handleClick(item)}
           >{item.title}</Link>
         </h2>
         <p className="place-card__type">{item.type}</p>
@@ -75,7 +74,8 @@ Card.propTypes = {
   onClick: PropTypes.func,
   onMouseOver: PropTypes.func,
   onMouseLeave: PropTypes.func,
-	onBookmarkClick: PropTypes.func,
+  onBookmarkClick: PropTypes.func,
+  isFavorite: PropTypes.bool,
 };
 
 export default Card;

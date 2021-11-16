@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {ActionCreator} from '../../reducer';
+import {Operation} from '../../reducer';
 
 import SortingType from '../sorting-type/sorting-type';
 import CardList from '../card-list/card-list';
@@ -11,6 +11,7 @@ import Map from '../map/map';
 import Header from '../header/header';
 
 import {getIndex} from '../../helpers/helpers';
+import {APP_ROUTE} from '../../const';
 
 class Main extends React.Component {
 
@@ -24,24 +25,17 @@ class Main extends React.Component {
 	}
 
 	componentDidMount() {
-
-		const {city} = this.props;
-
-		document.title = `6 cities - ${city}`;
-
+		document.title = `6 cities - ${this.props.city}`;
 	}
 
 	componentDidUpdate(prevProps) {
-
 		if (prevProps.city !== this.props.city) {
-
 			this.handleSortOffers('Popular');
 			document.title = `6 cities - ${this.props.city}`;
 		}
 	}
 
 	static getDerivedStateFromProps(props, state) {
-
 		if(props.cityOffer !== state.offers) {
 
 			return {
@@ -114,23 +108,19 @@ class Main extends React.Component {
 
 	handleBookmarkClick = (offer, small) => {
 
-		const {isAuthorizationRequired, toggleBookmark, favoriteList} = this.props;
+		const {isAuthorizationRequired, toggleBookmark} = this.props;
 
 		if (isAuthorizationRequired) {
-
-			window.location.assign('/login');
-
+			window.location.assign(APP_ROUTE.LOGIN);
 		} else{
-
-			toggleBookmark(offer, favoriteList);
+			toggleBookmark(offer);
 		}
 	};
 
 	render() {
 
-		const {hotels, city, currentUser, isAuthorizationRequired, reload, favoriteList} = this.props;
+		const {hotels, city, cityOffers, currentUser, isAuthorizationRequired, reload, favoriteList} = this.props;
 		const index = getIndex(hotels, city);
-		const offers = hotels[index].offers;
 		const cityCoord = hotels[index].coords;
 
 		return (
@@ -142,7 +132,7 @@ class Main extends React.Component {
 					onLogoClick={reload}
 				/>
 
-				<main className={offers.length ? 'page__main page__main--index'
+				<main className={cityOffers.length ? 'page__main page__main--index'
 																			 : 'page__main page__main--index page__main--index-empty'}>
 
 					<CitiesList items={hotels}
@@ -152,11 +142,11 @@ class Main extends React.Component {
 
 					<div className="cities">
 
-						{offers.length ?
+						{cityOffers.length ?
 							<div className="cities__places-container container">
 								<section className="cities__places places">
 									<h2 className="visually-hidden">Places</h2>
-									<b className="places__found">{offers.length} places to stay in {city}</b>
+									<b className="places__found">{cityOffers.length} places to stay in {city}</b>
 
 									<SortingType
 										key={city}
@@ -167,7 +157,7 @@ class Main extends React.Component {
 
 										<CardList
 											city={city}
-											items={offers}
+											items={cityOffers}
 											favoriteList={favoriteList}
 											onClick={this.handleClick}
 											onMouseOver={this.handleMouseOver}
@@ -182,7 +172,7 @@ class Main extends React.Component {
 
 										<Map
 											coords={cityCoord}
-											items={offers}
+											items={cityOffers}
 											offerHover={this.state.hoverItem}
 										/>
 
@@ -202,34 +192,17 @@ class Main extends React.Component {
 Main.propTypes = {
 	hotels: PropTypes.array.isRequired,
 	city: PropTypes.string.isRequired,
+	cityOffers: PropTypes.array.isRequired,
 	favoriteList: PropTypes.array.isRequired,
 	currentUser: PropTypes.object,
 	isAuthorizationRequired: PropTypes.bool,
-	onOfferClick: PropTypes.func,
 	onCityClick: PropTypes.func.isRequired
 };
 
-const mapStateToProps = (state, ownProps) => {
-
-	// const {id} = ownProps.match.params;
-	//
-	return Object.assign({}, ownProps, {
-	// 	id,
-	// 	city: getCityOffer(state, id).city,
-	// 	hotels: state.hotels,
-	// 	cityOffer: getCityOffer(state, id),
-	// 	cityOffers: getCityOffers(state, id),
-	// 	favoriteList: state.favoriteList,
-		// isAuthorizationRequired: state.isAuthorizationRequired,
-		// currentUser: state.currentUser,
-	});
-};
-
 const mapDispatchToProps = (dispatch) => ({
-
-	toggleBookmark: (cityOffer, favoriteList) => dispatch(ActionCreator.toggleFavorite(cityOffer, favoriteList)),
+	toggleBookmark: (cityOffer) => dispatch(Operation.toggleFavoriteList(cityOffer)),
 });
 
 export {Main}
 
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+export default connect(null, mapDispatchToProps)(Main);
