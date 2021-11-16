@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/six-cities-react/static/css/main.10e7b50a.chunk.css",
-    "main.js": "/six-cities-react/static/js/main.7c050f35.chunk.js",
-    "main.js.map": "/six-cities-react/static/js/main.7c050f35.chunk.js.map",
+    "main.js": "/six-cities-react/static/js/main.4c23f3f1.chunk.js",
+    "main.js.map": "/six-cities-react/static/js/main.4c23f3f1.chunk.js.map",
     "runtime-main.js": "/six-cities-react/static/js/runtime-main.1c9777ef.js",
     "runtime-main.js.map": "/six-cities-react/static/js/runtime-main.1c9777ef.js.map",
     "static/js/2.852dccf3.chunk.js": "/six-cities-react/static/js/2.852dccf3.chunk.js",
     "static/js/2.852dccf3.chunk.js.map": "/six-cities-react/static/js/2.852dccf3.chunk.js.map",
     "index.html": "/six-cities-react/index.html",
-    "precache-manifest.854f53b31afc0dc1d1dbc82cf3a74881.js": "/six-cities-react/precache-manifest.854f53b31afc0dc1d1dbc82cf3a74881.js",
+    "precache-manifest.1c1be057e41b90d83b7bc2254596e47a.js": "/six-cities-react/precache-manifest.1c1be057e41b90d83b7bc2254596e47a.js",
     "service-worker.js": "/six-cities-react/service-worker.js",
     "static/css/main.10e7b50a.chunk.css.map": "/six-cities-react/static/css/main.10e7b50a.chunk.css.map",
     "static/js/2.852dccf3.chunk.js.LICENSE.txt": "/six-cities-react/static/js/2.852dccf3.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.1c9777ef.js",
     "static/js/2.852dccf3.chunk.js",
     "static/css/main.10e7b50a.chunk.css",
-    "static/js/main.7c050f35.chunk.js"
+    "static/js/main.4c23f3f1.chunk.js"
   ]
 }
