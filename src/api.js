@@ -2,27 +2,27 @@ import axios from 'axios';
 
 const createAPI = (onUnauthorized) => {
 
-	const api = axios.create({
-		baseURL: `https://es31-server.appspot.com/six-cities`,
-		timeout: 1000 * 5,
-		withCredentials: true,
-	});
+  const api = axios.create({
+    baseURL: `https://es31-server.appspot.com/six-cities`,
+    timeout: 1000 * 5,
+    withCredentials: true,
+  });
 
-	const onSuccess = (response) => response;
+  const onSuccess = (response) => response;
 
-	const onFail = (error) => {
+  const onFail = (error) => {
+    console.log('error', error);
+    // if (error.response.status === 403) {
 
-		if (error.response.status === 403) {
+    //   onUnauthorized();
+    // }
 
-			onUnauthorized();
-		}
+    return error;
+  };
 
-		return error;
-	};
+  api.interceptors.response.use(onSuccess, onFail);
 
-	api.interceptors.response.use(onSuccess, onFail);
-
-	return api;
+  return api;
 };
 
 export default createAPI;

@@ -3,10 +3,8 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {ActionCreator, Operation} from '../../reducer';
 
-import ReviewList from '../review-list/review-list';
 import Map from '../map/map';
 import NeghbourhoodList from '../neighbourhood-list/neughbourhood-list';
-import FormComments from '../form-comments/form-comments';
 import BookmarkButton from '../bookmark-button/bookmark-button';
 import Header from '../header/header';
 import ErrorPage from '../error-page/error-page';
@@ -19,12 +17,12 @@ import Price from '../price/price';
 import PropertyHost from '../property-host/property-host';
 
 import {getCityCoord, getCityOffer, getCityOffers, getNhoods} from '../../helpers/helpers';
-import {BASE_URL, NUMBER_NEIBOURHOODS} from '../../const';
+import {APP_ROUTE, NUMBER_NEIBOURHOODS} from '../../const';
 
 class OfferProperty extends React.PureComponent{
 
 	constructor (props) {
-		super (props);
+		super(props);
 
 		this.state = {
 			hoverItem: null,
@@ -33,19 +31,12 @@ class OfferProperty extends React.PureComponent{
 	}
 
 	componentDidMount() {
-
-		const {cityOffer, getReviews} = this.props;
-
-		document.title = `${cityOffer.city} - ${cityOffer.title}`;
-
-		getReviews();
-
+		document.title = `${this.props.cityOffer.city} - ${this.props.cityOffer.title}`;
+		// this.props.getReviews();
 	}
 
 	componentDidUpdate(prevProps) {
-
 		if(prevProps.cityOffer !== this.props.cityOffer) {
-
 			window.scrollTo(0,0);
 			document.title = `${this.props.cityOffer.city} - ${this.props.cityOffer.title}`;
 		}
@@ -61,9 +52,7 @@ class OfferProperty extends React.PureComponent{
 	handleMouseLeave = () => this.setState({hoverItem: null});
 
 	isFavorite = () => {
-
 		const {cityOffer, favoriteList} = this.props;
-
 		if (!favoriteList.length) return false;
 
 		return favoriteList.findIndex((item) => item.hotelId === cityOffer.hotelId) >= 0;
@@ -73,11 +62,8 @@ class OfferProperty extends React.PureComponent{
 		const {isAuthorizationRequired, cityOffer, toggleBookmark, favoriteList} = this.props;
 
 		if (isAuthorizationRequired) {
-
-			window.location.assign(`${BASE_URL}/login`);
-
+			window.location.assign(APP_ROUTE.LOGIN);
 		} else{
-
 			if (small) {
 				toggleBookmark(offer, favoriteList);
 			} else {
@@ -87,10 +73,10 @@ class OfferProperty extends React.PureComponent{
 	};
 
 	render () {
-
-		const {hotels, cityOffers, city, currentUser, isAuthorizationRequired, favoriteList, reviews} = this.props;
+		const {hotels, cityOffers, city, currentUser, isAuthorizationRequired, favoriteList} = this.props;
 		const {offer} = this.state;
 
+		if (!this.props.cityOffer) return <ErrorPage/>;
 		if (!offer) return <ErrorPage/>;
 
 		const neighbourhoods = getNhoods(offer, cityOffers, NUMBER_NEIBOURHOODS);
@@ -108,9 +94,10 @@ class OfferProperty extends React.PureComponent{
 					<section className="property">
 
 						<PropertyGallery
+							title={offer.title}
 							images={offer.images}
 						/>
-
+						
 						<div className="property__container container">
 							<div className="property__wrapper">
 
@@ -154,17 +141,6 @@ class OfferProperty extends React.PureComponent{
 									offer={offer}
 								/>
 
-								<section className="property__reviews reviews">
-
-									<ReviewList reviews={reviews}/>
-
-									{!isAuthorizationRequired
-										? <FormComments
-												onSubmit={this.submitReviewForm}
-										/>
-										: null}
-
-								</section>
 							</div>
 						</div>
 						<section className="property_map map" style={{height: 579 + 'px', marginBottom: 50 + 'px'}}>
@@ -212,8 +188,8 @@ OfferProperty.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
-
 	const {id} = ownProps.match.params;
+	if (!getCityOffer(state, id)) return Object.assign({}, ownProps, {cityOffer: ''});
 
 	return Object.assign({}, ownProps, {
 		id,
@@ -224,18 +200,13 @@ const mapStateToProps = (state, ownProps) => {
 		favoriteList: state.favoriteList,
 		isAuthorizationRequired: state.isAuthorizationRequired,
 		currentUser: state.currentUser,
-		reviews: state.reviews,
 	});
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-
-
 	onClick: (offer) => dispatch(ActionCreator.setCurrentOffer(offer)),
-	toggleBookmark: (cityOffer, favoriteList) => dispatch(ActionCreator.toggleFavorite(cityOffer, favoriteList)),
-	getReviews: () => dispatch(Operation.getReviews(ownProps.match.params.id)),
+	toggleBookmark: (cityOffer) => dispatch(Operation.toggleFavoriteList(cityOffer)),
 });
 
 export {OfferProperty}
-
 export default connect(mapStateToProps, mapDispatchToProps)(OfferProperty);
