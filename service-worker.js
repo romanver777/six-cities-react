@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/six-cities-react/precache-manifest.580c156d633b98dbf9060ec42b56f2a7.js"
+  "/six-cities-react/precache-manifest.8394ec553126804af7069635606ca1c4.js"
 );
 
 self.addEventListener('message', (event) => {
