@@ -17,7 +17,7 @@ import Price from '../price/price';
 import PropertyHost from '../property-host/property-host';
 
 import {getCityCoord, getCityOffer, getCityOffers, getNhoods} from '../../helpers/helpers';
-import {APP_ROUTE, NUMBER_NEIBOURHOODS} from '../../const';
+import {BASE_PATHNAME, APP_ROUTE, NUMBER_NEIBOURHOODS, BASE_HASH} from '../../const';
 
 class OfferProperty extends React.PureComponent{
 
@@ -32,7 +32,6 @@ class OfferProperty extends React.PureComponent{
 
 	componentDidMount() {
 		document.title = `${this.props.cityOffer.city} - ${this.props.cityOffer.title}`;
-		// this.props.getReviews();
 	}
 
 	componentDidUpdate(prevProps) {
@@ -62,7 +61,7 @@ class OfferProperty extends React.PureComponent{
 		const {isAuthorizationRequired, cityOffer, toggleBookmark, favoriteList} = this.props;
 
 		if (isAuthorizationRequired) {
-			window.location.assign(APP_ROUTE.LOGIN);
+			window.location.assign(BASE_PATHNAME + BASE_HASH + APP_ROUTE.LOGIN);
 		} else{
 			if (small) {
 				toggleBookmark(offer, favoriteList);

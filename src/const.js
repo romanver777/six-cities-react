@@ -1,11 +1,14 @@
+// export const BASE_PATHNAME = `/six-cities-react`;
+// export const BASE_HASH = `/#`;
 export const BASE_PATHNAME = ``;
+export const BASE_HASH = ``;
 
 export const APP_ROUTE = {
   LOGIN: `/login`,
   ROOT: `/`,
   OFFER: `/offer/:id`,
   FAVORITES: `/favorites`,
-  ERROR: `/*`,
+  ERROR: `*`,
 };
 
 export const ICON_SIZE = 30;
