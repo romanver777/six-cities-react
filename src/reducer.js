@@ -15,6 +15,7 @@ const initialState = {
   isAuthorizationRequired: true,
   currentUser: {},
   reviews: [],
+  sortingType: `Popular`,
 };
 
 const getFavoriteIndexFromList = (offer, favoriteList) => {
@@ -36,6 +37,7 @@ const ActionType = {
   SET_FAVORITES: `SET_FAVORITES`,
   SET_FAVORITE_LIST: `SET_FAVORITE_LIST`,
   SET_REVIEWS: `SET_REVIEWS`,
+  SET_SORTING_TYPE: `SET_SORTING_TYPE`,
 };
 
 const ActionCreator = {
@@ -92,6 +94,11 @@ const ActionCreator = {
   setReviews: (reviews) => ({
     type: `SET_REVIEWS`,
     payload: reviews,
+  }),
+
+  setSortingType: (type) => ({
+    type: `SET_SORTING_TYPE`,
+    payload: type,
   }),
 };
 
@@ -161,6 +168,11 @@ const reducer = (state = initialState, action) => {
     case ActionType.SET_REVIEWS:
       return Object.assign({}, state, {
         reviews: action.payload,
+      });
+
+    case ActionType.SET_SORTING_TYPE:
+      return Object.assign({}, state, {
+        sortingType: action.payload,
       });
 
     default:

@@ -8,7 +8,6 @@ class SortingType extends React.PureComponent {
 
 		this.state = {
 			isOpen: false,
-			option: `Popular`,
 		}
 	}
 
@@ -20,13 +19,11 @@ class SortingType extends React.PureComponent {
 	};
 
 	handleClick = (e) => {
-
 		const {onChangeOption} = this.props;
 
 		document.querySelector('.places__option--active').classList.remove('places__option--active');
 
 		this.handleClickToggle();
-		this.setState({option: e.target.innerHTML});
 
 		e.target.classList.add('places__option--active');
 
@@ -41,7 +38,7 @@ class SortingType extends React.PureComponent {
 				<span className="places__sorting-type" tabIndex="0"
 							onClick={this.handleClickToggle}
 				>
-					{this.state.option}
+					{this.props.sortingType}
 					<svg className="places__sorting-arrow" width="7" height="4">
 						<use xlinkHref="#icon-arrow-select"/>
 					</svg>
@@ -82,6 +79,7 @@ class SortingType extends React.PureComponent {
 
 SortingType.propType = {
 	onChangeOption: PropTypes.func.isRequired,
+	sortingType: PropTypes.string.isRequired,
 };
 
 export default SortingType;
