@@ -11,7 +11,7 @@ import Map from '../map/map';
 import Header from '../header/header';
 
 import {getIndex} from '../../helpers/helpers';
-import {APP_ROUTE} from '../../const';
+import {BASE_PATHNAME, APP_ROUTE, BASE_HASH} from '../../const';
 
 class Main extends React.Component {
 
@@ -111,7 +111,7 @@ class Main extends React.Component {
 		const {isAuthorizationRequired, toggleBookmark} = this.props;
 
 		if (isAuthorizationRequired) {
-			window.location.assign(APP_ROUTE.LOGIN);
+			window.location.assign(BASE_PATHNAME + BASE_HASH + APP_ROUTE.LOGIN);
 		} else{
 			toggleBookmark(offer);
 		}

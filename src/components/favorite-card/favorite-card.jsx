@@ -5,7 +5,6 @@ import {Link} from 'react-router-dom';
 import Rating from '../rating/rating';
 import Mark from '../mark/mark';
 import Price from '../price/price';
-
 import BookmarkButton from '../bookmark-button/bookmark-button';
 
 const FavoriteCard = (props) => {

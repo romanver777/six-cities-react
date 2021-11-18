@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-import {BASE_PATHNAME, APP_ROUTE} from '../../const';
+import {APP_ROUTE} from '../../const';
 
 const ErrorPage = () => {
 
@@ -13,7 +13,7 @@ const ErrorPage = () => {
           <div className="favorites__status-wrapper">
             <b className="favorites__status">404 error</b>
             <p className="favorites__status-description">
-							Page not found. Go to the <Link to={BASE_PATHNAME + APP_ROUTE.ROOT}><span style={{textDecoration: 'underline'}}>main</span></Link> page
+							Page not found. Go to the <Link to={APP_ROUTE.ROOT}><span style={{textDecoration: 'underline'}}>main</span></Link> page
             </p>
           </div>
         </section>

@@ -6,7 +6,7 @@ import {ActionCreator, Operation} from '../../reducer';
 
 import FavoritesList from '../favorites-list/favorites-list';
 import Header from '../header/header';
-import {APP_ROUTE, BASE_PATHNAME} from '../../const';
+import {BASE_PATHNAME, APP_ROUTE} from '../../const';
 import {formatFavoriteList} from '../../helpers/helpers.js';
 
 const Favorites = (props) => {
@@ -56,8 +56,8 @@ const Favorites = (props) => {
         </main>
       }
       <footer className="footer">
-        <Link to={BASE_PATHNAME + APP_ROUTE.ROOT} className="footer__logo-link">
-          <img className="footer__logo" src="img/logo.svg" alt="6 cities logo" width="64" height="33"/>
+        <Link to={APP_ROUTE.ROOT} className="footer__logo-link">
+          <img className="footer__logo" src={BASE_PATHNAME + `/img/logo.svg`} alt="6 cities logo" width="64" height="33"/>
         </Link>
       </footer>
     </div>

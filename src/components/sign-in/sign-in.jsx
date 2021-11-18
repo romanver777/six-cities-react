@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import history from "../../history";
 
 import Header from "../header/header";
 import LocationButton from "../location-button/location-button";
 import { getRandomInt, getInputClassName } from "../../helpers/helpers";
+import {BASE_PATHNAME, APP_ROUTE, BASE_HASH} from "../../const";
 import "./sign-in.css";
 
 class SignIn extends React.PureComponent {
@@ -34,7 +34,7 @@ class SignIn extends React.PureComponent {
   
   componentDidUpdate(prevProps) {
     if (prevProps.currentUser !== this.props.currentUser) {
-	    history.replace('/');
+	    window.location.assign(BASE_PATHNAME + BASE_HASH + APP_ROUTE.ROOT);
     }
   }
 

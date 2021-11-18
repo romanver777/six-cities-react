@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 
-import {BASE_PATHNAME, LOCATION_BUTTON_CLASS} from '../../const';
+import {APP_ROUTE, LOCATION_BUTTON_CLASS} from '../../const';
 
 const LocationButton = (props) => {
 
@@ -12,7 +12,7 @@ const LocationButton = (props) => {
   return (
     <div className={LOCATION_BUTTON_CLASS[prefix.toUpperCase()]}>
       <div className="locations__item">
-        <Link to={BASE_PATHNAME} className="locations__item-link buttonLink"
+        <Link to={APP_ROUTE.ROOT} className="locations__item-link buttonLink"
           onClick={handleFavotiteCityClick}
         >
           <span>{city}</span>

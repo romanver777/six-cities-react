@@ -13,11 +13,11 @@ const Header = (props) => {
       <div className="container">
         <div className="header__wrapper">
           <div className="header__left">
-            <Link to={BASE_PATHNAME + APP_ROUTE.ROOT}
+            <Link to={APP_ROUTE.ROOT}
               className="header__logo-link buttonLink"
               onClick={onLogoClick}
             >
-              <img className="header__logo" src={`/img/logo.svg`} alt="6 cities logo" width="81" height="41"/>
+              <img className="header__logo" src={BASE_PATHNAME + `/img/logo.svg`} alt="6 cities logo" width="81" height="41"/>
             </Link>
           </div>
           <nav className="header__nav">
@@ -29,10 +29,12 @@ const Header = (props) => {
 
                   {currentUser && !isAuthorizationRequired
                     ? <span className="header__user-name user__name">
-                      {(window.location.pathname !== `/favorites`) ? <Link to={BASE_PATHNAME + `/favorites`}>{currentUser.name}</Link> : currentUser.name}
+                      {/* (window.location.hash !== `#` + APP_ROUTE.FAVORITES) ? <Link to={APP_ROUTE.FAVORITES}>{currentUser.name}</Link> : currentUser.name*/}
+                      {(window.location.pathname !== APP_ROUTE.FAVORITES) ? <Link to={APP_ROUTE.FAVORITES}>{currentUser.name}</Link> : currentUser.name}
                     </span>
                     : <span className="header__login">
-                      {(window.location.pathname !== `/login`) ?	<Link to={BASE_PATHNAME + `/login`}>Sign in</Link> : `Sign In`}
+                      {/* (window.location.hash !== `#` + APP_ROUTE.LOGIN) ?	<Link to={APP_ROUTE.LOGIN}>Sign in</Link> : `Sign In`*/}
+                      {(window.location.pathname !== window.location.hash + APP_ROUTE.LOGIN) ?	<Link to={APP_ROUTE.LOGIN}>Sign in</Link> : `Sign In`}
                     </span>
                   }
 
