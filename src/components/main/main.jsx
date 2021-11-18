@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {Operation} from '../../reducer';
+import {ActionCreator, Operation} from '../../reducer';
 
 import SortingType from '../sorting-type/sorting-type';
 import CardList from '../card-list/card-list';
@@ -20,7 +20,6 @@ class Main extends React.Component {
 
 		this.state = {
 			hoverItem: null,
-			offers: [],
 		};
 	}
 
@@ -37,7 +36,6 @@ class Main extends React.Component {
 
 	static getDerivedStateFromProps(props, state) {
 		if(props.cityOffer !== state.offers) {
-
 			return {
 				...state,
 				offers: props.cityOffers
@@ -58,21 +56,8 @@ class Main extends React.Component {
 
 	handleCityClick = (city) => this.props.onCityClick(city);
 
-	handleSortOffers = (option) => {
-
-		let {offers} = this.state;
-
-		switch (option) {
-
-			case `Popular`:
-				offers.sort((a, b) => {
-
-					if (a.id > b.id) return 1;
-					if (a.id < b.id) return -1;
-					return 0;
-				});
-				break;
-
+	handleSortOffers = (offers, type) => {
+		switch (type) {
 			case `Price: low to high`:
 				offers.sort((a, b) => {
 
@@ -81,7 +66,6 @@ class Main extends React.Component {
 					return 0;
 				});
 				break;
-
 			case `Price: high to low`:
 				offers.sort((a, b) => {
 
@@ -90,7 +74,6 @@ class Main extends React.Component {
 					return 0;
 				});
 				break;
-
 			case `Top rated first`:
 				offers.sort((a, b) => {
 
@@ -99,11 +82,10 @@ class Main extends React.Component {
 					return 0;
 				});
 				break;
-
-			default: return null;
+			default: return offers;
 		}
 
-		this.setState({offers});
+		return offers;
 	};
 
 	handleBookmarkClick = (offer, small) => {
@@ -119,7 +101,7 @@ class Main extends React.Component {
 
 	render() {
 
-		const {hotels, city, cityOffers, currentUser, isAuthorizationRequired, reload, favoriteList} = this.props;
+		const {hotels, city, cityOffers, currentUser, isAuthorizationRequired, reload, favoriteList, sortingType, setSortingType} = this.props;
 		const index = getIndex(hotels, city);
 		const cityCoord = hotels[index].coords;
 
@@ -150,14 +132,15 @@ class Main extends React.Component {
 
 									<SortingType
 										key={city}
-										onChangeOption={this.handleSortOffers}
+										sortingType={sortingType}
+										onChangeOption={(type) => setSortingType(type)}
 									/>
 
 									<div className="cities__places-list places__list tabs__content">
 
 										<CardList
 											city={city}
-											items={cityOffers}
+											items={this.handleSortOffers([...cityOffers], sortingType)}
 											favoriteList={favoriteList}
 											onClick={this.handleClick}
 											onMouseOver={this.handleMouseOver}
@@ -199,10 +182,15 @@ Main.propTypes = {
 	onCityClick: PropTypes.func.isRequired
 };
 
+const mapStateToProps = (state) => ({
+	sortingType: state.sortingType,
+});
+
 const mapDispatchToProps = (dispatch) => ({
 	toggleBookmark: (cityOffer) => dispatch(Operation.toggleFavoriteList(cityOffer)),
+	setSortingType: (type) => dispatch(ActionCreator.setSortingType(type)),
 });
 
 export {Main}
 
-export default connect(null, mapDispatchToProps)(Main);
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
