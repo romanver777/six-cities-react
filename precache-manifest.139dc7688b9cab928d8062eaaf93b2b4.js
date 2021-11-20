@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "365734506e4f1ca28a2f0ee672e8959e",
+    "revision": "6e834ef39b24b1bed36ccd53f129cf9d",
     "url": "/six-cities-react/index.html"
   },
   {
-    "revision": "f1aae923f8d1afab49a7",
+    "revision": "c8a05ca40396fb15f855",
     "url": "/six-cities-react/static/css/main.10e7b50a.chunk.css"
   },
   {
-    "revision": "a4a27730be9d38e9da0b",
-    "url": "/six-cities-react/static/js/2.43d5d238.chunk.js"
+    "revision": "f6b45d53d56ccd657e85",
+    "url": "/six-cities-react/static/js/2.149fb4b2.chunk.js"
   },
   {
     "revision": "f4d2aba8d2992b1b26869bad9d322e4d",
-    "url": "/six-cities-react/static/js/2.43d5d238.chunk.js.LICENSE.txt"
+    "url": "/six-cities-react/static/js/2.149fb4b2.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "f1aae923f8d1afab49a7",
-    "url": "/six-cities-react/static/js/main.870de4f5.chunk.js"
+    "revision": "c8a05ca40396fb15f855",
+    "url": "/six-cities-react/static/js/main.17492561.chunk.js"
   },
   {
     "revision": "647db3b1dc382d3283da",

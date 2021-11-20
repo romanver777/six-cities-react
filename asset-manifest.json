@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/six-cities-react/static/css/main.10e7b50a.chunk.css",
-    "main.js": "/six-cities-react/static/js/main.870de4f5.chunk.js",
-    "main.js.map": "/six-cities-react/static/js/main.870de4f5.chunk.js.map",
+    "main.js": "/six-cities-react/static/js/main.17492561.chunk.js",
+    "main.js.map": "/six-cities-react/static/js/main.17492561.chunk.js.map",
     "runtime-main.js": "/six-cities-react/static/js/runtime-main.1c9777ef.js",
     "runtime-main.js.map": "/six-cities-react/static/js/runtime-main.1c9777ef.js.map",
-    "static/js/2.43d5d238.chunk.js": "/six-cities-react/static/js/2.43d5d238.chunk.js",
-    "static/js/2.43d5d238.chunk.js.map": "/six-cities-react/static/js/2.43d5d238.chunk.js.map",
+    "static/js/2.149fb4b2.chunk.js": "/six-cities-react/static/js/2.149fb4b2.chunk.js",
+    "static/js/2.149fb4b2.chunk.js.map": "/six-cities-react/static/js/2.149fb4b2.chunk.js.map",
     "index.html": "/six-cities-react/index.html",
-    "precache-manifest.5d2c841a4318280f63a261d0aa5c29b0.js": "/six-cities-react/precache-manifest.5d2c841a4318280f63a261d0aa5c29b0.js",
+    "precache-manifest.139dc7688b9cab928d8062eaaf93b2b4.js": "/six-cities-react/precache-manifest.139dc7688b9cab928d8062eaaf93b2b4.js",
     "service-worker.js": "/six-cities-react/service-worker.js",
     "static/css/main.10e7b50a.chunk.css.map": "/six-cities-react/static/css/main.10e7b50a.chunk.css.map",
-    "static/js/2.43d5d238.chunk.js.LICENSE.txt": "/six-cities-react/static/js/2.43d5d238.chunk.js.LICENSE.txt"
+    "static/js/2.149fb4b2.chunk.js.LICENSE.txt": "/six-cities-react/static/js/2.149fb4b2.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.1c9777ef.js",
-    "static/js/2.43d5d238.chunk.js",
+    "static/js/2.149fb4b2.chunk.js",
     "static/css/main.10e7b50a.chunk.css",
-    "static/js/main.870de4f5.chunk.js"
+    "static/js/main.17492561.chunk.js"
   ]
 }
