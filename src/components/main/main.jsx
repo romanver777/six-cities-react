@@ -29,23 +29,12 @@ class Main extends React.Component {
 
 	componentDidUpdate(prevProps) {
 		if (prevProps.city !== this.props.city) {
-			this.handleSortOffers('Popular');
+			this.props.setSortingType(`Popular`);
 			document.title = `6 cities - ${this.props.city}`;
 		}
 	}
 
-	static getDerivedStateFromProps(props, state) {
-		if(props.cityOffer !== state.offers) {
-			return {
-				...state,
-				offers: props.cityOffers
-			}
-		}
-
-		return null;
-	}
-
-	handleClick = (item) => this.props.onClick(item);
+	handleCardClick = (item) => this.props.onClick(item);
 
 	handleMouseOver = (item) => this.setState((prevState) => {
 
@@ -59,32 +48,16 @@ class Main extends React.Component {
 	handleSortOffers = (offers, type) => {
 		switch (type) {
 			case `Price: low to high`:
-				offers.sort((a, b) => {
-
-					if (a.price > b.price) return 1;
-					if (a.price < b.price) return -1;
-					return 0;
-				});
+				offers.sort((a, b) => a.price - b.price);
 				break;
 			case `Price: high to low`:
-				offers.sort((a, b) => {
-
-					if (a.price < b.price) return 1;
-					if (a.price > b.price) return -1;
-					return 0;
-				});
+				offers.sort((a, b) => b.price - a.price);
 				break;
 			case `Top rated first`:
-				offers.sort((a, b) => {
-
-					if (a.rating < b.rating) return 1;
-					if (a.rating > b.rating) return -1;
-					return 0;
-				});
+				offers.sort((a, b) => b.rating - a.rating);
 				break;
 			default: return offers;
 		}
-
 		return offers;
 	};
 
@@ -142,7 +115,7 @@ class Main extends React.Component {
 											city={city}
 											items={this.handleSortOffers([...cityOffers], sortingType)}
 											favoriteList={favoriteList}
-											onClick={this.handleClick}
+											onClick={this.handleCardClick}
 											onMouseOver={this.handleMouseOver}
 											onMouseLeave={this.handleMouseLeave}
 											onBookmarkClick={this.handleBookmarkClick}
