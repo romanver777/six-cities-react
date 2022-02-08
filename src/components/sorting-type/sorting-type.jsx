@@ -4,10 +4,13 @@ import PropTypes from "prop-types";
 class SortingType extends React.PureComponent {
   constructor(props) {
     super(props);
-
+    
+    this.list = ['Popular', 'Price: low to high', 'Price: high to low', 'Top rated first'];
     this.wrapRef = React.createRef();
+
     this.state = {
       isOpen: false,
+      activeTabIndex: 0,
     };
   }
 
@@ -32,11 +35,11 @@ class SortingType extends React.PureComponent {
   };
 
   handleClick = (e) => {
-    e.currentTarget
-      .querySelector(".places__option--active")
-      .classList.remove("places__option--active");
-    e.target.classList.add("places__option--active");
 
+    if(e.target.innerHTML !== this.list[this.state.activeTabIndex]){
+
+      this.setState( {activeTabIndex: this.list.indexOf(e.target.innerHTML) });
+    }
     this.handleClickToggle();
     this.props.onChangeOption(e.target.innerHTML);
   };
@@ -57,24 +60,15 @@ class SortingType extends React.PureComponent {
         </span>
         <ul
           onClick={this.handleClick}
-          className={
-            this.state.isOpen
-              ? `places__options places__options--custom places__options--opened`
-              : `places__options places__options--custom places__options--closed`
+          className={`places__options places__options--custom 
+          ${this.state.isOpen
+              ? `places__options--opened`
+              : `places__options--closed`}`
           }
         >
-          <li className="places__option places__option--active" tabIndex="0">
-            Popular
-          </li>
-          <li className="places__option" tabIndex="0">
-            Price: low to high
-          </li>
-          <li className="places__option" tabIndex="0">
-            Price: high to low
-          </li>
-          <li className="places__option" tabIndex="0">
-            Top rated first
-          </li>
+          {this.list.map( (item, ind) => (
+            <li className={`places__option ${this.state.activeTabIndex === ind ? "places__option--active" : ''}`} key={ind} tabIndex="0">{item}</li>
+          ))}          
         </ul>
       </form>
     );
